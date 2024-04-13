@@ -1,0 +1,153 @@
+use master
+go
+drop database dbOneplay
+go
+create database dbOneplay
+go
+use dbOneplay
+go
+create table tblBanners(
+	BannerID int not null identity(1,1) primary key,
+	JogoID int not null,--FK
+	Home VARBINARY(max),
+	Banner VARBINARY(max),
+	VersaoDados datetime null,
+)
+go
+create table tblCategorias(
+	CategoriaID int not null identity(1,1) primary key,
+	Categoria varchar(max) not null,
+	VersaoDados datetime null,
+)
+go
+create table tblImagens(
+	ImagensID int not null identity(1,1) primary key,
+	JogoID int not null,--FK
+	Titulo1 varchar(max),
+	Titulo2 varchar(max),
+	Descricao1 varchar(max),
+	Descricao2 varchar(max),
+	Imagem1 VARBINARY(max),
+	Imagem2 VARBINARY(max),
+	VersaoDados datetime null,
+)
+go
+create table tblJogos(
+	JogoID int not null identity(1,1) primary key,
+	CategoriaID int,--FK
+	ExibirHome bit default 0,
+	Ordem int,
+	Nome varchar(max),
+	Frase varchar(max),
+	Descricao varchar(max),
+	Download varchar(max),
+	VersaoDados datetime null,
+)
+go
+create table tblTutoriais(
+	TutorialID int not null identity(1,1) primary key,
+	JogoID int not null,--FK
+	Titulo varchar(max),
+	Descricao varchar(max),
+	Passo varchar(max),
+	DescricaoPasso varchar(max),
+	VersaoDados datetime null,
+)
+go
+create table tblVideos(
+	VideoID int not null identity(1,1) primary key,
+	JogoID int not null,--FK
+	Titulo varchar(max),
+	Descricao varchar(max),
+	Link varchar(max),
+	VersaoDados datetime null,
+)
+go
+CREATE TABLE tblUsuarios(
+	UsuarioID INT NOT NULL identity(1,1) primary key,
+	Nome VARCHAR(MAX) NOT NULL,
+	Senha VARCHAR(MAX) NOT NULL,
+	VersaoDados datetime null,
+)
+go
+-- Criar Foreign Keys
+ALTER TABLE tblBanners ADD CONSTRAINT FK_tblBanners_tblJogos_JogoID FOREIGN KEY(JogoID) REFERENCES tblJogos(JogoID)
+go
+ALTER TABLE tblImagens ADD CONSTRAINT FK_tblImagens_tblJogos_JogoID FOREIGN KEY(JogoID) REFERENCES tblJogos(JogoID)
+go
+ALTER TABLE tblTutoriais ADD CONSTRAINT FK_tblTutoriais_tblJogos_JogoID FOREIGN KEY(JogoID) REFERENCES tblJogos(JogoID)
+go
+ALTER TABLE tblVideos ADD CONSTRAINT FK_tblVideos_tblJogos_JogoID FOREIGN KEY(JogoID) REFERENCES tblJogos(JogoID)
+go
+ALTER TABLE tblJogos ADD CONSTRAINT FK_tblJogos_tblCategorias_CategoriaID FOREIGN KEY(CategoriaID) REFERENCES tblCategorias(CategoriaID)
+go
+
+-- TRIGGERS Valores_Padrao
+CREATE TRIGGER Valor_Padrao_tblJogos
+ON tblJogos
+AFTER INSERT
+AS
+BEGIN
+	UPDATE tblJogos SET Nome = 'Nome Jogo ID '+CAST(i.JogoID AS VARCHAR(MAX)) FROM tblJogos t INNER JOIN inserted i ON t.JogoID = i.JogoID WHERE t.Nome IS NULL;
+	UPDATE tblJogos SET Frase = 'Frase Jogo ID '+CAST(i.JogoID AS VARCHAR(MAX)) FROM tblJogos t INNER JOIN inserted i ON t.JogoID = i.JogoID WHERE t.Frase IS NULL;
+	UPDATE tblJogos SET Descricao = 'Descricao Jogo ID '+CAST(i.JogoID AS VARCHAR(MAX)) FROM tblJogos t INNER JOIN inserted i ON t.JogoID = i.JogoID WHERE t.Descricao IS NULL;
+END;
+go
+
+-- TRIGGERS Versao_Dados
+CREATE TRIGGER Versao_Dados_tblJogos
+ON tblJogos
+AFTER UPDATE,INSERT
+AS
+BEGIN
+	UPDATE tblJogos SET VersaoDados = GETDATE() WHERE JogoID IN (SELECT DISTINCT JogoID FROM inserted)
+END;
+go
+CREATE TRIGGER Versao_Dados_tblCategorias
+ON tblCategorias
+AFTER UPDATE,INSERT
+AS
+BEGIN
+	UPDATE tblCategorias SET VersaoDados = GETDATE() WHERE CategoriaID IN (SELECT DISTINCT CategoriaID FROM inserted)
+END;
+go
+CREATE TRIGGER Versao_Dados_tblImagens
+ON tblImagens
+AFTER UPDATE,INSERT
+AS
+BEGIN
+	UPDATE tblImagens SET VersaoDados = GETDATE() WHERE ImagensID IN (SELECT DISTINCT ImagensID FROM inserted)
+END;
+go
+CREATE TRIGGER Versao_Dados_tblBanners
+ON tblBanners
+AFTER UPDATE,INSERT
+AS
+BEGIN
+	UPDATE tblBanners SET VersaoDados = GETDATE() WHERE BannerID IN (SELECT DISTINCT BannerID FROM inserted)
+END;
+go
+CREATE TRIGGER Versao_Dados_tblVideos
+ON tblVideos
+AFTER UPDATE,INSERT
+AS
+BEGIN
+	UPDATE tblVideos SET VersaoDados = GETDATE() WHERE VideoID IN (SELECT DISTINCT VideoID FROM inserted)
+END;
+go
+CREATE TRIGGER Versao_Dados_tblTutoriais
+ON tblTutoriais
+AFTER UPDATE,INSERT
+AS
+BEGIN
+	UPDATE tblTutoriais SET VersaoDados = GETDATE() WHERE TutorialID IN (SELECT DISTINCT TutorialID FROM inserted)
+END;
+go
+CREATE TRIGGER Versao_Dados_tblUsuarios
+ON tblUsuarios
+AFTER UPDATE,INSERT
+AS
+BEGIN
+	UPDATE tblUsuarios SET VersaoDados = GETDATE() WHERE UsuarioID IN (SELECT DISTINCT UsuarioID FROM inserted)
+END;
+go

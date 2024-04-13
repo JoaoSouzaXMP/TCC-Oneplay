@@ -1,0 +1,14 @@
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+python -m pip install flask
+python -m pip install Flask-WTF
+python -m pip install flask-bcrypt
+python -m pip install pyodbc
+python -m pip install pyopenssl
+python -m pip install werkzeug
+python -m pip install pandas
+python -m pip install openpyxl
+python -m pip install ipykernel
+
+python -m pip install
+python -m pip uninstall 
