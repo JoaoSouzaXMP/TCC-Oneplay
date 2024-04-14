@@ -11,10 +11,11 @@ def login():
 @app.route('/autenticar', methods=['POST'])
 def autenticar():
     form = FormularioUsuario()
-    if not form.validate_on_submit():
+    if form.validate_on_submit():
         consulta_usuario = Usuario.consultarnome(form.nome.data)
         if consulta_usuario and check_password_hash(consulta_usuario[2], form.senha.data):
             session['usuario_logado'] = consulta_usuario[1]
+            session['admin'] = consulta_usuario[3]
             flash(f'{consulta_usuario[1]} logado com sucesso !')
             return redirect(request.form.get('proxima', url_for('index')))
         else:
@@ -28,16 +29,15 @@ def novousuario():
 @app.route('/cadastrarusuario', methods=['POST'])
 def cadastrarusuario():
     form = FormularioUsuario()
-    if not form.validate_on_submit():
+    if form.validate_on_submit():
         if Usuario.consultarnome(form.nome.data): 
             flash('Nome de Usuario já utilizado!')
             return redirect(url_for('novousuario'))
         else:
             novo_usuario = Usuario(form.nome.data,generate_password_hash(form.senha.data).decode('utf-8'))
             Usuario.adicionar(novo_usuario)
-            session['usuario_logado'] = novo_usuario._nome
             flash(f'Usuario {novo_usuario._nome} Cadastrado com Sucesso!')
-            return redirect(url_for('index'))
+            return redirect(url_for('login'))
     else:
         flash('Caracteres inválidos !')
         return redirect(url_for('novousuario')) 
@@ -49,7 +49,7 @@ def esquecisenha():
 @app.route('/redefinirsenha', methods=['POST'])
 def redefinirsenha():
     form = FormularioUsuario()
-    if not form.validate_on_submit():
+    if form.validate_on_submit():
         user = Usuario(form.nome.data,generate_password_hash(form.senha.data).decode('utf-8'))
         consulta_usuario = Usuario.consultarnome(user._nome)
         if consulta_usuario:
@@ -63,5 +63,6 @@ def redefinirsenha():
 @app.route('/logout')
 def logout():
     session['usuario_logado'] = None
+    session['admin'] = None
     flash('Logout efetuado com sucesso !')
     return redirect(url_for('index'))

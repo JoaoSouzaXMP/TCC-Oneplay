@@ -6,22 +6,22 @@
         <div>
             <div class="row align-items-center">
                 <div class="col-12 col-lg-8 md-pb">
-                    {% if jogo[0][6] %}
+                    {% if imagens[0] %}
                         <div class="image-wrapper">
-                            <img  src="data:image/jpg;base64,{{ jogo[0][6] }}" alt="{{ jogo[0][1] }}">
+                            <img  src="data:image/jpg;base64,{{ imagens[0] }}" alt="{{ jogo[4] }}">
                         </div>
                     {% else  %}
                         <div class="image-wrapper">
-                            <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[0][1] }}">
+                            <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[4] }}">
                         </div>
                     {% endif %}
                 </div>
                 <div class="col-12 col-lg offset-lg-1">
                     <div class="card-wrapper">
                         <div class="card-box">
-                            <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ jogo[0][1] }}</strong></h4>
-                            <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ jogo[0][2] }}</p>
-                            <div class="mbr-section-btn mb-4"><a class="btn btn-primary display-4" href="{{ jogo[0][5] }}"target="_blank">Download!</a></div>
+                            <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ jogo[4] }}</strong></h4>
+                            <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ pagina[0] }}</p>
+                            <div class="mbr-section-btn mb-4"><a class="btn btn-primary display-4" href="{{ pagina[1] }}"target="_blank">Download!</a></div>
                         </div>
                     </div>
                 </div>
@@ -36,8 +36,8 @@
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
                     <hr class="line">
-                    {% if jogo[0][3] %}
-                        <p class="mbr-text align-center mbr-fonts-style my-4 display-5"><em>{{ jogo[0][3] }}</em></p>
+                    {% if pagina and pagina[2] %}
+                        <p class="mbr-text align-center mbr-fonts-style my-4 display-5"><em>{{ pagina[2] }}</em></p>
                     {% else %}
                         <p class="mbr-text align-center mbr-fonts-style my-4 display-5"><em>Sem Descrição</em></p>
                     {% endif %}
@@ -55,13 +55,13 @@
                 <div class="col-md-12 col-lg-9">
                     <div class="card-wrapper pb-4">
                         <div class="card-box align-center">
-                            {% if tutorial and tutorial[0][2] %}
-                                <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ tutorial[0][2] }}</strong></h4>
+                            {% if pagina and pagina[3] %}
+                                <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ pagina[3] }}</strong></h4>
                             {% else %}
                                 <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>Nenhum Titulo disponíve</strong></h4>
                             {% endif %}
-                            {% if tutorial and tutorial[0][3] %}
-                                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ tutorial[0][3] }}</p>
+                            {% if pagina and pagina[4] %}
+                                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ pagina[4] }}</p>
                             {% else %}
                                 <p class="mbr-text mbr-fonts-style mb-4 display-7">Nenhuma Descrição disponível</p>
                             {% endif %}
@@ -75,13 +75,13 @@
                                 <span class="step-number mbr-fonts-style display-5">{{ passos[0] }}</span>
                             </div>
                             <div class="text-box">
-                                {% if passos[4] %}
-                                    <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>{{ passos[4] }}</strong></h4>
+                                {% if passos[1] %}
+                                    <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>{{ passos[1] }}</strong></h4>
                                 {% else %}
                                     <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Nenhum Titulo disponível</strong></h4>
                                 {% endif %}
-                                {% if passos[5] %}
-                                    <h5 class="icon-text mbr-black mbr-fonts-style display-4">{{ passos[5] }}</h5>
+                                {% if passos[2] %}
+                                    <h5 class="icon-text mbr-black mbr-fonts-style display-4">{{ passos[2] }}</h5>
                                 {% else %}
                                     <h5 class="icon-text mbr-black mbr-fonts-style display-4">Nenhum Passo disponível</h5>
                                 {% endif %}
@@ -101,8 +101,8 @@
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-6">
                         <div class="image-wrapper">
-                            {% if jogo[0][7] %}
-                                <img src="data:image/jpg;base64,{{ jogo[0][7] }}" alt="Imagem Noticia 1">
+                            {% if imagens[1] %}
+                                <img src="data:image/jpg;base64,{{ imagens[1] }}" alt="Imagem Noticia 1">
                             {% else %}
                                 <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 1">
                             {% endif %}
@@ -111,8 +111,8 @@
                     </div>
                     <div class="col-12 col-lg">
                         <div class="text-wrapper">
-                                <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{ jogo[0][8] }}</strong></h3>
-                            <p class="mbr-text mbr-fonts-style display-7">{{ jogo[0][9] }}</p>
+                            <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{ pagina[5] }}</strong></h3>
+                            <p class="mbr-text mbr-fonts-style display-7">{{ pagina[6] }}</p>
                         </div>
                     </div>
                 </div>
@@ -126,8 +126,8 @@
                 <div class="row align-items-center">
                     <div class="col-12 col-lg-6">
                         <div class="image-wrapper">
-                            {% if jogo[0][10] %}
-                                <img src="data:image/jpg;base64,{{ jogo[0][10] }}" alt="Imagem Noticia 2">
+                            {% if imagens[2] %}
+                                <img src="data:image/jpg;base64,{{ imagens[2] }}" alt="Imagem Noticia 2">
                             {% else %}
                                 <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 2">
                             {% endif %}
@@ -136,8 +136,8 @@
                     </div>
                     <div class="col-12 col-lg">
                         <div class="text-wrapper">
-                            <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{ jogo[0][11] }}</strong></h3>
-                            <p class="mbr-text mbr-fonts-style display-7">{{ jogo[0][12] }}</p>
+                            <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{ pagina[7] }}</strong></h3>
+                            <p class="mbr-text mbr-fonts-style display-7">{{ pagina[8] }}</p>
                         </div>
                     </div>
                 </div>
@@ -151,13 +151,13 @@
         <div class="container">
             <div class="mbr-section-head">
                 <h2 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>Veja sobre a ultima atualização:</strong></h2>
-                <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>{{ jogo[0][13] }}</strong></h4>
-                <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-2 display-7">{{ jogo[0][14] }}</h5>
+                <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>{{ pagina[9] }}</strong></h4>
+                <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-2 display-7">{{ pagina[10] }}</h5>
             </div>
             <div class="row justify-content-center mt-4">
                 <div class="col-12 col-md-10 video-block">
                     <div class="video-wrapper">
-                        <iframe class="mbr-embedded-video" src="{{ jogo[0][15] }}" width="1280" height="720" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="mbr-embedded-video" src="{{ pagina[11] }}" width="1280" height="720" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>

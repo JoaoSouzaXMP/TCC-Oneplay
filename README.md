@@ -15,6 +15,7 @@ Em resumo, "Oneplay" é uma plataforma de jogos online que busca melhorar a expe
 
 - **Persistência de Dados**: Utiliza SQL Server para armazenamento e gerenciamento de dados.
 - **Autenticação de Usuários**: Permite a criação e autenticação de usuários.
+- **Área Administrativa**: Usuários administradores podem modificar o site.
 - **Validação de Formulários**: Implementa a validação de dados de formulários.
 - **Criptografia de Senhas**: Assegura a segurança dos usuários através da criptografia de senhas.
 - **Proteção CSRF**: Protege contra ataques Cross-Site Request Forgery.
@@ -76,7 +77,7 @@ python main.py
 > O Projeto agora está em execução e pode ser acessado apontando um navegador da web para [`http://localhost:25565/`](http://localhost:25565/)
 
 > [!NOTE]
-> Para acessar o projeto de fora da sua rede, utilize seu [`IP Externo`](https://www.invertexto.com/teste-de-portas) ou um [`DNS Dinâmico`](https://www.noip.com/pt-BR) para não ter o trabalho de trocar o IP caso mude. O usuário e senha padrão são `admin` e `1234`, respectivamente.
+> Para acessar o projeto de fora da sua rede, utilize seu [`IP Externo`](https://www.invertexto.com/teste-de-portas) ou um [`DNS Dinâmico`](https://www.noip.com/pt-BR) para não ter o trabalho de trocar o IP caso mude. O usuário e senha do Administrador padrão é `admin` e `%1234`, respectivamente.
 
 # Configuração de Backup
 
@@ -88,7 +89,7 @@ DECLARE @Caminho varchar(MAX)
 DECLARE @Descricao varchar(MAX)
 set @Caminho = 'D:\Backups\' + 'dbOneplay' + replace(replace(replace(convert(varchar(20), getdate(), 120), '-',''),':',''),' ','_') + '.bak'
 set @Descricao = 'Backup do dia ' + convert(varchar(20), getdate(),120)
-backup database dbListaJogos to disk = @caminho with checksum, description = @Descricao
+backup database dbOneplay to disk = @caminho with checksum, description = @Descricao
 ```
 # Realizar Backup 
 ## Pelo CMD.

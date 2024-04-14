@@ -49,7 +49,11 @@
                             {% elif url_atual != url_for('login')  %}
                                 <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('logout') }}"><span class="mbri-play mbr-iconfont mbr-iconfont-btn"></span>Logout</a></li>
                             {% endif %}
-                            <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('info') }}"><span class="socicon socicon-ghost mbr-iconfont mbr-iconfont-btn"></span>Informação</a></li>
+                            {% if session['admin'] == true %}
+                                <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('indexadm') }}"><span class="socicon socicon-ghost mbr-iconfont mbr-iconfont-btn"></span>Administrativo</a></li>
+                            {% else  %}
+                                <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('info') }}"><span class="socicon socicon-ghost mbr-iconfont mbr-iconfont-btn"></span>Informação</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -116,7 +120,9 @@
                             <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary" href="{{ url_for('index') }}">Início</a></li>
                             <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary" href="{{ url_for('login') }}">Login</a></li>
                             <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary" href="{{ url_for('info') }}">Informações</a></li>
-                            <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary">Admin</a></li>
+                            {% if session['admin'] == true %}
+                                <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary" href="{{ url_for('indexadm') }}">Administrativo</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                     <div class="col-12 col-md-6 col-lg-3">
@@ -137,6 +143,18 @@
                 </div>
             </div>
         </section>
+
+        <script type="text/javascript" src="static\js\jquery.js"></script>
+        <script type="text/javascript" src="static\js\app.js"></script>
+        <script src="static\js\validacao.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('textarea.autoresize').on('input', function () {
+                    this.style.height = 'auto';
+                    this.style.height = (this.scrollHeight) + 'px';
+                });
+            });
+        </script>
 
         <!-- Mobirise -->
         <section hidden style="background-color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif; color:#aaa; font-size:12px; padding: 0; align-items: center; display: flex;">
