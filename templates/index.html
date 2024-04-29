@@ -11,13 +11,13 @@
             <div class="row mt-4">
                 <!-- Jogos -->
                 {% for jogo in jogos %}
-                    <div class="item features-image сol-12 col-md-6 col-lg-3 active">
+                    <div class="item features-image сol-12 col-md-6 col-lg-2 active">
                         <div class="item-wrapper">
                             <div class="item-img">
                                 {% if jogo[6] %}
-                                    <a class="nav-link" href="{{ url_for('jogo', id=jogo[0]) }}"><img src="data:image/jpg;base64,{{ jogo[6] }}" height="430" alt="{{ jogo[4] }}" data-slide-to="0" data-bs-slide-to="0"></a>
+                                    <a href="{{ url_for('jogo', id=jogo[0]) }}"><img src="data:image;base64,{{ jogo[6] }}" alt="{{ jogo[4] }}" height="430" loading="lazy"></a>
                                 {% else  %}
-                                    <a class="nav-link" href="{{ url_for('jogo', id=jogo[0]) }}"><img src="/static/imgs/GAMES/capa_padrao.jpg" height="430" alt="{{ jogo[4] }}" data-slide-to="0" data-bs-slide-to="0"></a>
+                                    <a href="{{ url_for('jogo', id=jogo[0]) }}"><img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[4] }}" height="430" loading="lazy"></a>
                                 {% endif %}
                             </div>
                             <div class="item-content">

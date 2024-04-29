@@ -8,11 +8,11 @@
                 <div class="col-12 col-lg-8 md-pb">
                     {% if imagens[0] %}
                         <div class="image-wrapper">
-                            <img  src="data:image/jpg;base64,{{ imagens[0] }}" alt="{{ jogo[4] }}">
+                            <img  src="data:image;base64,{{ imagens[0] }}" alt="{{ jogo[4] }}" height="430" loading="lazy">
                         </div>
                     {% else  %}
                         <div class="image-wrapper">
-                            <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[4] }}">
+                            <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[4] }}" height="430" loading="lazy">
                         </div>
                     {% endif %}
                 </div>
@@ -20,8 +20,14 @@
                     <div class="card-wrapper">
                         <div class="card-box">
                             <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ jogo[4] }}</strong></h4>
-                            <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ pagina[0] }}</p>
-                            <div class="mbr-section-btn mb-4"><a class="btn btn-primary display-4" href="{{ pagina[1] }}"target="_blank">Download!</a></div>
+                            {% if pagina[1] %}
+                                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ pagina[1] }}</p>
+                            {% else %}
+                                <p class="mbr-text mbr-fonts-style mb-4 display-7">Sem Resumo do Jogo</p>
+                            {% endif %}
+                            {% if pagina[2] %}
+                                <div class="mbr-section-btn mb-4"><a class="btn btn-primary display-4" href="{{ pagina[2] }}"target="_blank">Download!</a></div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -36,10 +42,10 @@
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
                     <hr class="line">
-                    {% if pagina and pagina[2] %}
-                        <p class="mbr-text align-center mbr-fonts-style my-4 display-5"><em>{{ pagina[2] }}</em></p>
+                    {% if pagina and pagina[3] %}
+                        <p class="mbr-text align-center mbr-fonts-style my-4 display-5"><em>{{ pagina[3] }}</em></p>
                     {% else %}
-                        <p class="mbr-text align-center mbr-fonts-style my-4 display-5"><em>Sem Descrição</em></p>
+                        <p class="mbr-text align-center mbr-fonts-style my-4 display-5"><em>Sem Descrição do Jogo</em></p>
                     {% endif %}
                     <hr class="line">
                 </div>
@@ -55,15 +61,15 @@
                 <div class="col-md-12 col-lg-9">
                     <div class="card-wrapper pb-4">
                         <div class="card-box align-center">
-                            {% if pagina and pagina[3] %}
-                                <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ pagina[3] }}</strong></h4>
-                            {% else %}
-                                <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>Nenhum Titulo disponíve</strong></h4>
-                            {% endif %}
                             {% if pagina and pagina[4] %}
-                                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ pagina[4] }}</p>
+                                <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ pagina[4] }}</strong></h4>
                             {% else %}
-                                <p class="mbr-text mbr-fonts-style mb-4 display-7">Nenhuma Descrição disponível</p>
+                                <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>Nenhum Titulo do Tutorial Disponíve</strong></h4>
+                            {% endif %}
+                            {% if pagina and pagina[5] %}
+                                <p class="mbr-text mbr-fonts-style mb-4 display-7">{{ pagina[5] }}</p>
+                            {% else %}
+                                <p class="mbr-text mbr-fonts-style mb-4 display-7">Nenhuma Descrição do Tutorial Disponível</p>
                             {% endif %}
                         </div>
                     </div>
@@ -72,16 +78,20 @@
                     {% for passos in tutorial %}
                         <div class="item mbr-flex">
                             <div class="icon-box">
-                                <span class="step-number mbr-fonts-style display-5">{{ passos[0] }}</span>
+                                {% if passos[2] %}
+                                    <span class="step-number mbr-fonts-style display-5">{{ passos[2] }}</span>
+                                {% else %}
+                                    <span class="step-number mbr-fonts-style display-5">0</span>
+                                {% endif %}
                             </div>
                             <div class="text-box">
-                                {% if passos[1] %}
-                                    <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>{{ passos[1] }}</strong></h4>
+                                {% if passos[3] %}
+                                    <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>{{ passos[3] }}</strong></h4>
                                 {% else %}
-                                    <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Nenhum Titulo disponível</strong></h4>
+                                    <h4 class="icon-title card-title mbr-black mbr-fonts-style display-7"><strong>Nenhum Titulo do Passo disponível</strong></h4>
                                 {% endif %}
-                                {% if passos[2] %}
-                                    <h5 class="icon-text mbr-black mbr-fonts-style display-4">{{ passos[2] }}</h5>
+                                {% if passos[4] %}
+                                    <h5 class="icon-text mbr-black mbr-fonts-style display-4">{{ passos[4] }}</h5>
                                 {% else %}
                                     <h5 class="icon-text mbr-black mbr-fonts-style display-4">Nenhum Passo disponível</h5>
                                 {% endif %}
@@ -102,17 +112,25 @@
                     <div class="col-12 col-lg-6">
                         <div class="image-wrapper">
                             {% if imagens[1] %}
-                                <img src="data:image/jpg;base64,{{ imagens[1] }}" alt="Imagem Noticia 1">
+                                <img src="data:image;base64,{{ imagens[1] }}" alt="Imagem Noticia 1" height="430" loading="lazy">
                             {% else %}
-                                <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 1">
+                                <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 1" height="430" loading="lazy">
                             {% endif %}
                             <p class="mbr-description mbr-fonts-style pt-2 align-center display-4">Noticia 1</p>
                         </div>
                     </div>
                     <div class="col-12 col-lg">
                         <div class="text-wrapper">
-                            <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{ pagina[5] }}</strong></h3>
-                            <p class="mbr-text mbr-fonts-style display-7">{{ pagina[6] }}</p>
+                            {% if pagina[6] %}
+                                <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{ pagina[6] }}</strong></h3>
+                            {% else %}
+                                <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>Nenhum Titulo da Noticia 1 disponível</strong></h3>
+                            {% endif %}
+                            {% if pagina[7] %}
+                                <p class="mbr-text mbr-fonts-style display-7">{{ pagina[7] }}</p>
+                            {% else %}
+                                <p class="mbr-text mbr-fonts-style display-7">Nenhuma Descrição da Noticia 1 disponível</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -127,17 +145,25 @@
                     <div class="col-12 col-lg-6">
                         <div class="image-wrapper">
                             {% if imagens[2] %}
-                                <img src="data:image/jpg;base64,{{ imagens[2] }}" alt="Imagem Noticia 2">
+                                <img src="data:image;base64,{{ imagens[2] }}" alt="Imagem Noticia 2" height="430" loading="lazy">
                             {% else %}
-                                <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 2">
+                                <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 2" height="430" loading="lazy">
                             {% endif %}
                             <p class="mbr-description mbr-fonts-style mt-2 align-center display-4">Noticia 2</p>
                         </div>
                     </div>
                     <div class="col-12 col-lg">
                         <div class="text-wrapper">
-                            <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{ pagina[7] }}</strong></h3>
-                            <p class="mbr-text mbr-fonts-style display-7">{{ pagina[8] }}</p>
+                        {% if pagina[8] %}
+                            <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{ pagina[8] }}</strong></h3>
+                        {% else %}
+                            <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>Nenhum Titulo da Noticia 2 disponível</strong></h3>
+                        {% endif %}
+                        {% if pagina[9] %}
+                            <p class="mbr-text mbr-fonts-style display-7">{{ pagina[9] }}</p>
+                        {% else %}
+                            <p class="mbr-text mbr-fonts-style display-7">Nenhuma Descrição da Noticia 2 disponível</p>
+                        {% endif %}
                         </div>
                     </div>
                 </div>
@@ -151,13 +177,24 @@
         <div class="container">
             <div class="mbr-section-head">
                 <h2 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>Veja sobre a ultima atualização:</strong></h2>
-                <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>{{ pagina[9] }}</strong></h4>
-                <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-2 display-7">{{ pagina[10] }}</h5>
+                <br>
+                {% if pagina[10] %}
+                    <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>{{ pagina[10] }}</strong></h4>
+                {% else %}
+                    <h4 class="mbr-section-title mbr-fonts-style mb-0 display-2"><strong>Nenhum Titulo do Vídeo disponível</strong></h4>
+                {% endif %}
+                {% if pagina[11] %}
+                    <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-2 display-7">{{ pagina[11] }}</h5>
+                {% else %}
+                    <h5 class="mbr-section-subtitle mbr-fonts-style mb-0 mt-2 display-7">Nenhuma Descrição do Vídeo disponível</h5>
+                {% endif %}
             </div>
             <div class="row justify-content-center mt-4">
                 <div class="col-12 col-md-10 video-block">
                     <div class="video-wrapper">
-                        <iframe class="mbr-embedded-video" src="{{ pagina[11] }}" width="1280" height="720" frameborder="0" allowfullscreen></iframe>
+                        {% if pagina[12] %}
+                            <iframe class="mbr-embedded-video" src="{{ pagina[12] }}" width="1280" height="720" frameborder="0" allowfullscreen></iframe>
+                        {% endif %}
                     </div>
                 </div>
             </div>

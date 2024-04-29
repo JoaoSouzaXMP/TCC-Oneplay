@@ -4,7 +4,7 @@
     <section class="content5 cid-sOud1i17dH">
         <div class="container">
             <h1>{{ titulo }}</h1>
-            <wbr>
+            <br>
             <form id="meuFormulario" method="POST" action="{{ rota }}">
                 <input type="hidden" name="proxima" value="{{ proxima or url_for('index') }}">
                 {{ form.csrf_token() }}

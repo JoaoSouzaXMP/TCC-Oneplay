@@ -64,6 +64,7 @@ create table tblCategorias(
 go
 
 create table tblTutorialJogos(
+	TutorialJogoid int not null identity(1,1) primary key,
 	JogoID int ,
 	Ordem int,
 	Passo varchar(max),

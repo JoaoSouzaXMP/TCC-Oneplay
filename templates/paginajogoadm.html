@@ -1,0 +1,187 @@
+{% extends "template.html" %}
+{% block conteudo %}
+
+    <!-- Inicio Wallpaper -->
+    <section data-bs-version="5.1" class="features11 cid-sP4Lcr4Fx6" id="features12-1h">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-8 md-pb">
+                <form id="formularioPagina" action="{{ url_for('atualizarjogoadm', id=jogo[0]) }}" method="post" enctype="multipart/form-data">
+                <label class="fileContainer">
+                    <div class="item-img">
+                        {% if imagens[0] %}
+                            <img src="data:image;base64,{{ imagens[0] }}" alt="{{ jogo[4] }}" height="430" loading="lazy">
+                        {% else  %}
+                            <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[4] }}" height="430" loading="lazy">
+                        {% endif %}
+                    </div>
+                    <input hidden type="file" name="arquivo1" accept=".jpg,.png,.gif" value="imagens[0]">
+                </label>
+            </div>
+            <div class="col-12 col-lg offset-lg-1">
+                <div class="card-wrapper">
+                    <div class="card-box">
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ jogo[4] }}</strong></h4>
+                        {{ form.csrf_token() }}
+                        {{ form.JogoID() }}
+                        {{ form.ResumoJogo.label(class="form-label") }}
+                        {{ form.ResumoJogo(class="form-control autoresize") }}
+                        {{ form.LinkDownload.label(class="form-label") }}
+                        {{ form.LinkDownload(class="form-control autoresize") }}
+                        <br>
+                        {{ form.salvar(class="btn btn-success") }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fim Wallpaper -->
+
+    <!-- Inicio Descrição -->
+    <section data-bs-version="5.1" class="content6 cid-sOvBwEiBGF" id="content6-16">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <hr class="line">
+                    <br>
+                    {{ form.DescricaoJogo.label(class="form-label") }}
+                    {{ form.DescricaoJogo(class="form-control autoresize",rows="4") }}
+                    {{ form.salvar(class="btn btn-success") }}
+                    <br><br>
+                    <hr class="line">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fim Descrição -->
+
+    <!-- Inicio Noticia -->
+        <!-- Inicio IMG1 -->
+        <section data-bs-version="5.1" class="image1 cid-sOue3bzBrg" id="image1-m">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-6">
+                        <label class="fileContainer">
+                            <div class="item-img">
+                                {% if imagens[1] %}
+                                    <img src="data:image;base64,{{ imagens[1] }}" alt="Imagem Noticia 1" height="430" loading="lazy">
+                                {% else %}
+                                    <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 1" height="430" loading="lazy">
+                                {% endif %}
+                                <input hidden type="file" name="arquivo2" accept=".jpg,.png,.gif" value="imagens[1]">
+                            </div>
+                            <p class="mbr-description mbr-fonts-style pt-2 align-center display-4">Noticia 1</p>
+                        </label>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <div class="text-wrapper">
+                            {{ form.TituloNoticia1.label(class="form-label") }}
+                            {{ form.TituloNoticia1(class="form-control autoresize") }}
+                            {{ form.DescricaoNoticia1.label(class="form-label") }}
+                            {{ form.DescricaoNoticia1(class="form-control autoresize",rows="2") }}
+                            <br>
+                            {{ form.salvar(class="btn btn-success") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            <!-- Fim IMG1 -->
+
+        <!-- Inicio IMG2 -->
+        <section data-bs-version="5.1" class="image2 cid-sOue3y3uCW" id="image2-n">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12 col-lg-6">
+                        <label class="fileContainer">
+                            <div class="item-img">
+                                {% if imagens[2] %}
+                                    <img src="data:image;base64,{{ imagens[2] }}" alt="Imagem Noticia 2" height="430" loading="lazy">
+                                {% else %}
+                                    <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 2" height="430" loading="lazy">
+                                {% endif %}
+                                <input hidden type="file" name="arquivo3" accept=".jpg,.png,.gif" value="imagens[2]">
+                            </div>
+                            <p class="mbr-description mbr-fonts-style mt-2 align-center display-4">Noticia 2</p>
+                        </label>
+                    </div>
+                    <div class="col-12 col-lg">
+                        <div class="text-wrapper">
+                            {{ form.TituloNoticia2.label(class="form-label") }}
+                            {{ form.TituloNoticia2(class="form-control autoresize") }}
+                            {{ form.DescricaoNoticia2.label(class="form-label") }}
+                            {{ form.DescricaoNoticia2(class="form-control autoresize",rows="2") }}
+                            <br>
+                            {{ form.salvar(class="btn btn-success") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Fim IMG2 -->
+    <!-- Fim Noticia -->
+
+    <!-- Inicio Vídeo Destaque -->
+    <section data-bs-version="5.1" class="video2 cid-sOuciQtYll" id="video2-f">
+        <div class="container">
+            {{ form.TituloVideo.label(class="form-label") }}
+            {{ form.TituloVideo(class="form-control autoresize") }}
+            {{ form.DescricaoVideo.label(class="form-label") }}
+            {{ form.DescricaoVideo(class="form-control autoresize",rows="2") }}
+            {{ form.LinkVideo.label(class="form-label") }}
+            {{ form.LinkVideo(class="form-control autoresize") }}
+            <br>
+            {{ form.salvar(class="btn btn-success") }}
+        </div>
+    </section>
+    <!-- Fim Vídeo Destaque -->
+
+    <!-- Inicio Tutoriais -->
+    <section data-bs-version="5.1" class="features19 cid-sOvwquc22I" id="features20-11">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-9">
+                    <div class="card-wrapper pb-4">
+                        <div class="card-box align-center">
+                            {{ form.TituloTutorial.label(class="form-label") }}
+                            {{ form.TituloTutorial(class="form-control autoresize") }}
+                            {{ form.DescricaoTutorial.label(class="form-label") }}
+                            {{ form.DescricaoTutorial(class="form-control autoresize",rows="2") }}
+                            <br>
+                            {{ form.salvar(class="btn btn-success") }}
+                            </form>
+                    </div>
+                </div>
+
+                <h1>TUTORIAL</h1>
+                <a class="btn btn-warning" href="{{ url_for('novopasso', id=jogo[0]) }}" >Novo Passo</a>
+                <br><br>
+                <div class="col-12 col-md-8">
+                    {% for passos in tutorial %}
+                        <form id="FormularioTutorial{{ passos[0] }}" action="{{ url_for('atualizarjogoadm', id=passos[1]) }}" method="post">
+                            <div class="">
+                                <div class="">
+                                    {{ form2.csrf_token() }}
+                                    {{ form2.ID(value=passos[0]) }}
+                                    {{ form2.NumeroTutorial.label(class="form-label") }}
+                                    {{ form2.NumeroTutorial(class="form-control", value=passos[2]) }}
+                                </div>
+                                <div class="">
+                                    {{ form2.TituloTutorial.label(class="form-label") }}
+                                    {{ form2.TituloTutorial(class="form-control", value=passos[3]) }}
+                                    {{ form2.DescricaoTutorial.label(class="form-label") }}
+                                    {{ form2.DescricaoTutorial(class="form-control", value=passos[4]) }}
+                                    <br>
+                                    {{ form2.salvar(class="btn btn-success") }}
+                                </div>
+                                <a class="btn btn-warning" href="{{ url_for('deletarpasso', id=passos[1], idp=passos[0]) }}" >Deletar Passo {{ passos[2] }}</a>
+                            </div>
+                        </form>
+                        <br><br><br>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fim Tutoriais -->
+
+{% endblock %}

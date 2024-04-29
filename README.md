@@ -1,4 +1,4 @@
-# TCC Oneplay 2.0 ![Status](https://img.shields.io/badge/STATUS-Em_Aberto-red) 
+# TCC Oneplay 2.0 ![Status](https://img.shields.io/badge/STATUS-Finalizado-green) 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=()&logo=python&logoColor=ffffff) ![Flask](https://img.shields.io/badge/Flask-000000?style=()&logo=flask&logoColor=ffffff) ![SQLServer](https://img.shields.io/badge/SQL_Server-CC2927?style==()&logo=microsoftsqlserver&logoColor=ffffff) ![HTML](https://img.shields.io/badge/HTML-E34F26?style=()&logo=html5&logoColor=ffffff) ![CSS](https://img.shields.io/badge/CSS-1572B6?style=()&logo=css3&logoColor=ffffff) ![GIT](https://img.shields.io/badge/GIT-F05032?style=()&logo=git&logoColor=ffffff) ![VSCode](https://img.shields.io/badge/VS_Code-007ACC?style=()&logo=visualstudiocode&logoColor=ffffff)
 
 ## 📚 Introdução
@@ -26,8 +26,10 @@ Em resumo, "Oneplay" é uma plataforma de jogos online que busca melhorar a expe
 - **Registro de Alteração de Dados**: Possui funcionalidade de registrar a última alteração nas linhas da tabela.
 
 # 📊 Diagrama das tabelas
+![alt text](uploads\diagrama_tabelas.png)
 
 # 🖥️ Visualização
+<img width="100%" height="500" src='uploads\visualização.gif'>
 
 ## 🔧 Pré-requisitos
 
