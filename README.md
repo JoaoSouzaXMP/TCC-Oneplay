@@ -26,7 +26,7 @@ Em resumo, "Oneplay" é uma plataforma de jogos online que busca melhorar a expe
 - **Registro de Alteração de Dados**: Possui funcionalidade de registrar a última alteração nas linhas da tabela.
 
 # 📊 Diagrama das tabelas
-![alt text](uploads\diagrama_tabelas.png)
+<img width="100%" src='uploads\diagrama_tabelas.png'>
 
 # 🖥️ Visualização
 <img width="100%" height="500" src='uploads\visualização.gif'>
