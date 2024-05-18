@@ -44,16 +44,17 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
                             <li class="nav-item"><a class="nav-link link text-black display-4" class="nav-link" href="{{ url_for('index') }}"><span class="mbri-home mbr-iconfont mbr-iconfont-btn"></span>Início</a></li>
-                            {% if 'usuario_logado' not in session or session['usuario_logado'] == None and url_atual != url_for('login') %} 
-                                <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('login') }}"><span class="mbri-play mbr-iconfont mbr-iconfont-btn"></span>Login</a></li>
-                            {% elif url_atual != url_for('login')  %}
-                                <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('logout') }}"><span class="mbri-play mbr-iconfont mbr-iconfont-btn"></span>Logout</a></li>
-                            {% endif %}
                             {% if session['admin'] == true %}
                                 <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('indexadm') }}"><span class="socicon socicon-ghost mbr-iconfont mbr-iconfont-btn"></span>Administrativo</a></li>
                             {% else  %}
                                 <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('info') }}"><span class="socicon socicon-ghost mbr-iconfont mbr-iconfont-btn"></span>Informação</a></li>
                             {% endif %}
+                            {% if 'usuario_logado' not in session or session['usuario_logado'] == None and url_atual != url_for('login') %} 
+                                <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('login') }}"><span class="mbri-play mbr-iconfont mbr-iconfont-btn"></span>Login</a></li>
+                            {% elif url_atual != url_for('login')  %}
+                                <li class="nav-item"><a class="nav-link link text-black text-primary display-4" class="nav-link" href="{{ url_for('logout') }}"><span class="mbri-play mbr-iconfont mbr-iconfont-btn"></span>Logout</a></li>
+                            {% endif %}
+                            <li class="nav-item"><a class="nav-link link text-black display-4" class="nav-link">Usuário: {{ session['usuario_logado'] }} | Admin: {{ session['admin'] }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -120,7 +121,7 @@
                             <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary" href="{{ url_for('index') }}">Início</a></li>
                             <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary" href="{{ url_for('login') }}">Login</a></li>
                             <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary" href="{{ url_for('info') }}">Informações</a></li>
-                            {% if session['admin'] == true %}
+                            {% if session['admin'] == True %}
                                 <li class="mbr-text item-wrap"><a class="nav-link" class="text-primary" href="{{ url_for('indexadm') }}">Administrativo</a></li>
                             {% endif %}
                         </ul>

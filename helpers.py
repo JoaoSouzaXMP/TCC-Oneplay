@@ -5,6 +5,7 @@ from wtforms.validators import DataRequired,Length,InputRequired,Regexp
 
 # Validação Inputs Jogos
 class FormularioJogo(FlaskForm):
+    ID = HiddenField()
     nome = StringField('Nome do Jogo',validators=[DataRequired(),Length(min=2,max=25),InputRequired()])
     salvar = SubmitField('Salvar')
 # Validação Inputs Usuarios

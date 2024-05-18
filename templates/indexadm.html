@@ -7,9 +7,9 @@
             <div class="mbr-section-head">
                 <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Área administrativa</strong></h4>
             </div>
-            <a class="btn btn-primary" href="{{ url_for('novojogo') }}" >Novo Jogo</a>
-            <a class="btn btn-primary" href="{{ url_for('exibirtodos') }}" >Exibir Todos</a>
-            <a class="btn btn-primary" href="{{ url_for('ocultartodos') }}" >Ocultar Todos</a>
+            <a class="btn btn-primary" href="{{ url_for('jogo_acao', acao='adicionar', id=0) }}" >Novo Jogo</a>
+            <a class="btn btn-primary" href="{{ url_for('acao_todos', acao='exibirtodos') }}" >Exibir Todos</a>
+            <a class="btn btn-primary" href="{{ url_for('acao_todos', acao='ocultartodos') }}" >Ocultar Todos</a>
             <div class="row mt-4">
                 <!-- Jogos -->
                 {% for jogo in jogos %}
@@ -17,11 +17,11 @@
                         <form id="formularioJogo{{ jogo[0] }}" action="{{ url_for('atualizarindex') }}" method="post" enctype="multipart/form-data">
                             <a class="btn btn-warning" href="{{ url_for('jogoadm', id=jogo[0]) }}" >Acessar Pagina {{ jogo[4] }}</a>
                             {% if jogo[2] == 0 %}
-                                <a class="btn btn-info" href="{{ url_for('exibirjogo', id=jogo[0]) }}" >Exibir {{ jogo[4] }}</a>
+                                <a class="btn btn-info" href="{{ url_for('jogo_acao', acao='exibirjogo', id=jogo[0]) }}" >Exibir {{ jogo[4] }}</a>
                             {% else  %}
-                                <a class="btn btn-dark" href="{{ url_for('exibirjogo', id=jogo[0]) }}" >Ocultar {{ jogo[4] }}</a>
+                                <a class="btn btn-dark" href="{{ url_for('jogo_acao', acao='exibirjogo', id=jogo[0]) }}" >Ocultar {{ jogo[4] }}</a>
                             {% endif %}
-                            <a class="btn btn-secondary" href="{{ url_for('excluirjogo', id=jogo[0]) }}" >Excluir {{ jogo[4] }}</a>
+                            <a class="btn btn-secondary" href="{{ url_for('jogo_acao', acao='excluirjogo', id=jogo[0]) }}" >Excluir {{ jogo[4] }}</a>
                             <div class="item-wrapper">
                                 <label class="fileContainer">
                                     <div class="item-img">
@@ -35,8 +35,8 @@
                                 </label>
                                 <fieldset>
                                     {{ form.csrf_token() }}
-                                    <input hidden name="id" value="{{ jogo[0] }}">
                                     <div class="item-content">
+                                        {{ form.ID(value=jogo[0]) }}
                                         {{ form.nome.label(class="form-label") }}
                                         {{ form.nome(class="form-control", value=jogo[4] ) }}
                                         <br>
