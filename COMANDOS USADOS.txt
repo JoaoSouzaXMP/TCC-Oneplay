@@ -10,5 +10,7 @@ python -m pip install pandas
 python -m pip install openpyxl
 python -m pip install ipykernel
 
+python -m pip install Flask-SQLAlchemy
+
 python -m pip install
 python -m pip uninstall 

@@ -14,8 +14,8 @@
                     <div class="item features-image сol-12 col-md-6 col-lg-2 active">
                         <div class="item-wrapper">
                             <div class="item-img">
-                                {% if jogo[6] %}
-                                    <a href="{{ url_for('jogo', id=jogo[0]) }}"><img src="data:image;base64,{{ jogo[6] }}" alt="{{ jogo[4] }}" height="430" loading="lazy"></a>
+                                {% if jogo[5] %}
+                                    <a href="{{ url_for('jogo', id=jogo[0]) }}"><img src="data:image;base64,{{ jogo[5] }}" alt="{{ jogo[4] }}" height="430" loading="lazy"></a>
                                 {% else  %}
                                     <a href="{{ url_for('jogo', id=jogo[0]) }}"><img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[4] }}" height="430" loading="lazy"></a>
                                 {% endif %}

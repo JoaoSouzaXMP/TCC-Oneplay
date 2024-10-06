@@ -1,17 +1,21 @@
-import pyodbc
+import urllib
 
-SECRET_KEY = 'Oneplaypy'
+SERVER = r'.\SQLEXPRESS'
+DRIVER = 'ODBC Driver 17 for SQL Server'
+CONNECTIONSTRING = f'DRIVER={DRIVER};SERVER={SERVER};DATABASE=dbOneplay;Trusted_Connection=yes;'
 
-try:
-    SERVER = r'.\SQLEXPRESS'
-    DRIVER = 'ODBC Driver 17 for SQL Server'
-    CONNECTIONSTRING = f'DRIVER={DRIVER};SERVER={SERVER};DATABASE=dbOneplay;Trusted_Connection=yes;'
-    CONN = pyodbc.connect(CONNECTIONSTRING, autocommit = True)
-    CURSOR = CONN.cursor()
-except pyodbc.Error as ex:
-    sqlstate = ex.args[0]
-    if sqlstate == '42000':
-        print("Erro de sintaxe SQL.")
-    else:
-        print(f"Ocorreu um erro: {ex}")
-    exit()
+PARAMS = urllib.parse.quote_plus(CONNECTIONSTRING)
+
+class Config:
+    SECRET_KEY = 'Oneplaypy'
+    SQLALCHEMY_DATABASE_URI = f"mssql+pyodbc:///?odbc_connect={PARAMS}"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # Adicione outras configurações aqui
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    # Outras configurações específicas para desenvolvimento
+
+class ProductionConfig(Config):
+    DEBUG = False
+    # Outras configurações específicas para produção

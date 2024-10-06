@@ -25,13 +25,13 @@
                             <div class="item-wrapper">
                                 <label class="fileContainer">
                                     <div class="item-img">
-                                        {% if jogo[6] %}
-                                            <img src="data:image;base64,{{ jogo[6] }}" alt="{{ jogo[4] }}" height="430" loading="lazy">
+                                        {% if jogo[5] %}
+                                            <img src="data:image;base64,{{ jogo[5] }}" alt="{{ jogo[4] }}" height="430" loading="lazy">
                                         {% else  %}
                                             <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[4] }}" height="430" loading="lazy">
                                         {% endif %}
                                     </div>
-                                    <input hidden type="file" name="arquivo" accept=".jpg,.png,.gif" value="jogo[6]">
+                                    <input hidden type="file" name="arquivo" accept=".jpg,.png,.gif" value="jogo[5]">
                                 </label>
                                 <fieldset>
                                     {{ form.csrf_token() }}

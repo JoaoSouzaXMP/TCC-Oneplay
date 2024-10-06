@@ -5,22 +5,22 @@
     <section data-bs-version="5.1" class="features11 cid-sP4Lcr4Fx6" id="features12-1h">
         <div class="row align-items-center">
             <div class="col-12 col-lg-8 md-pb">
-                <form id="formularioPagina" action="{{ url_for('atualizar', tipo='jogo', id=jogo[0]) }}" method="post" enctype="multipart/form-data">
+                <form id="formularioPagina" action="{{ url_for('atualizar', tipo='jogo', id=jogo.JogoID) }}" method="post" enctype="multipart/form-data">
                 <label class="fileContainer">
                     <div class="item-img">
-                        {% if imagens[0] %}
-                            <img src="data:image;base64,{{ imagens[0] }}" alt="{{ jogo[4] }}" height="430" loading="lazy">
+                        {% if imagens.ImgPaginaJogo %}
+                            <img src="data:image;base64,{{ imagens.ImgPaginaJogo }}" alt="{{ jogo.Nome }}" height="430" loading="lazy">
                         {% else  %}
-                            <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo[4] }}" height="430" loading="lazy">
+                            <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="{{ jogo.Nome }}" height="430" loading="lazy">
                         {% endif %}
                     </div>
-                    <input hidden type="file" name="arquivo1" accept=".jpg,.png,.gif" value="imagens[0]">
+                    <input hidden type="file" name="arquivo1" accept=".jpg,.png,.gif" value="imagens.ImgPaginaJogo">
                 </label>
             </div>
             <div class="col-12 col-lg offset-lg-1">
                 <div class="card-wrapper">
                     <div class="card-box">
-                        <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ jogo[4] }}</strong></h4>
+                        <h4 class="card-title mbr-fonts-style mb-4 display-2"><strong>{{ jogo.Nome }}</strong></h4>
                         {{ form_pagina.csrf_token() }}
                         {{ form_pagina.JogoID() }}
                         {{ form_pagina.ResumoJogo.label(class="form-label") }}
@@ -62,12 +62,12 @@
                     <div class="col-12 col-lg-6">
                         <label class="fileContainer">
                             <div class="item-img">
-                                {% if imagens[1] %}
-                                    <img src="data:image;base64,{{ imagens[1] }}" alt="Imagem Noticia 1" height="430" loading="lazy">
+                                {% if imagens.ImgNoticia1 %}
+                                    <img src="data:image;base64,{{ imagens.ImgNoticia1 }}" alt="Imagem Noticia 1" height="430" loading="lazy">
                                 {% else %}
                                     <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 1" height="430" loading="lazy">
                                 {% endif %}
-                                <input hidden type="file" name="arquivo2" accept=".jpg,.png,.gif" value="imagens[1]">
+                                <input hidden type="file" name="arquivo2" accept=".jpg,.png,.gif" value="imagens.ImgNoticia1">
                             </div>
                             <p class="mbr-description mbr-fonts-style pt-2 align-center display-4">Noticia 1</p>
                         </label>
@@ -94,12 +94,12 @@
                     <div class="col-12 col-lg-6">
                         <label class="fileContainer">
                             <div class="item-img">
-                                {% if imagens[2] %}
-                                    <img src="data:image;base64,{{ imagens[2] }}" alt="Imagem Noticia 2" height="430" loading="lazy">
+                                {% if imagens.ImgNoticia2 %}
+                                    <img src="data:image;base64,{{ imagens.ImgNoticia2 }}" alt="Imagem Noticia 2" height="430" loading="lazy">
                                 {% else %}
                                     <img src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 2" height="430" loading="lazy">
                                 {% endif %}
-                                <input hidden type="file" name="arquivo3" accept=".jpg,.png,.gif" value="imagens[2]">
+                                <input hidden type="file" name="arquivo3" accept=".jpg,.png,.gif" value="imagens.ImgNoticia2">
                             </div>
                             <p class="mbr-description mbr-fonts-style mt-2 align-center display-4">Noticia 2</p>
                         </label>
@@ -153,27 +153,27 @@
                 </div>
 
                 <h1>TUTORIAL</h1>
-                <a class="btn btn-warning" href="{{ url_for('passo_acao', acao='adicionar', id=jogo[0], idp=0) }}" >Novo Passo</a>
+                <a class="btn btn-warning" href="{{ url_for('passo_acao', acao='adicionar', id=jogo.JogoID, idp=0) }}" >Novo Passo</a>
                 <br><br>
                 <div class="col-12 col-md-8">
                     {% for passos in tutorial %}
-                        <form id="FormularioTutorial{{ passos[0] }}" action="{{ url_for('atualizar', tipo='passo', id=jogo[0]) }}" method="post">
+                        <form id="FormularioTutorial{{ passos.TutorialJogoid }}" action="{{ url_for('atualizar', tipo='passo', id=jogo.JogoID) }}" method="post">
                             <div class="">
                                 <div class="">
                                     {{ form_tutorial.csrf_token() }}
-                                    {{ form_tutorial.ID(value=passos[0]) }}
+                                    {{ form_tutorial.ID(value=passos.TutorialJogoid) }}
                                     {{ form_tutorial.NumeroTutorial.label(class="form-label") }}
-                                    {{ form_tutorial.NumeroTutorial(class="form-control", value=passos[2]) }}
+                                    {{ form_tutorial.NumeroTutorial(class="form-control", value=passos.Ordem) }}
                                 </div>
                                 <div class="">
                                     {{ form_tutorial.TituloTutorial.label(class="form-label") }}
-                                    {{ form_tutorial.TituloTutorial(class="form-control", value=passos[3]) }}
+                                    {{ form_tutorial.TituloTutorial(class="form-control", value=passos.Passo) }}
                                     {{ form_tutorial.DescricaoTutorial.label(class="form-label") }}
-                                    {{ form_tutorial.DescricaoTutorial(class="form-control", value=passos[4]) }}
+                                    {{ form_tutorial.DescricaoTutorial(class="form-control", value=passos.DescricaoPasso) }}
                                     <br>
                                     {{ form_tutorial.salvar(class="btn btn-success") }}
                                 </div>
-                                <a class="btn btn-warning" href="{{ url_for('passo_acao', acao='deletar', id=jogo[0], idp=passos[0]) }}" >Deletar Passo {{ passos[2] }}</a>
+                                <a class="btn btn-warning" href="{{ url_for('passo_acao', acao='deletar', id=jogo.JogoID, idp=passos.TutorialJogoid) }}" >Deletar Passo {{ passos.Ordem }}</a>
                             </div>
                         </form>
                         <br><br><br>

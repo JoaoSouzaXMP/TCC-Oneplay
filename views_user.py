@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, session, flash, url_for
 from main import app
-from models import Usuario
+from modelos import Usuario
 from helpers import FormularioUsuario
 from flask_bcrypt import generate_password_hash,check_password_hash
 
@@ -12,11 +12,11 @@ def login():
 def autenticar():
     form = FormularioUsuario()
     if form.validate_on_submit():
-        consulta_usuario = Usuario.consultarnome(form.nome.data)
-        if consulta_usuario and check_password_hash(consulta_usuario[2], form.senha.data):
-            session['usuario_logado'] = consulta_usuario[1]
-            session['admin'] = consulta_usuario[3]
-            flash(f'{consulta_usuario[1]} logado com sucesso !')
+        consulta_usuario = Usuario.consultar_by_nome(form.nome.data)
+        if consulta_usuario and check_password_hash(consulta_usuario.Senha, form.senha.data):
+            session['usuario_logado'] = consulta_usuario.Nome
+            session['admin'] = consulta_usuario.OP
+            flash(f'{consulta_usuario.Nome} logado com sucesso !')
             return redirect(request.form.get('proxima', url_for('index')))
         else:
             flash('Credenciais incorretas !')
@@ -30,13 +30,12 @@ def novousuario():
 def cadastrarusuario():
     form = FormularioUsuario()
     if form.validate_on_submit():
-        if Usuario.consultarnome(form.nome.data): 
+        if Usuario.consultar_by_nome(form.nome.data): 
             flash('Nome de Usuario já utilizado!')
             return redirect(url_for('novousuario'))
         else:
-            novo_usuario = Usuario(form.nome.data,generate_password_hash(form.senha.data).decode('utf-8'))
-            Usuario.adicionar(novo_usuario)
-            flash(f'Usuario {novo_usuario._nome} Cadastrado com Sucesso!')
+            Usuario.adicionar_novo(form.nome.data,generate_password_hash(form.senha.data).decode('utf-8'))
+            flash(f'Usuario {form.nome.data} Cadastrado com Sucesso!')
             return redirect(url_for('login'))
     else:
         flash('Caracteres inválidos !')
@@ -50,11 +49,10 @@ def esquecisenha():
 def redefinirsenha():
     form = FormularioUsuario()
     if form.validate_on_submit():
-        user = Usuario(form.nome.data,generate_password_hash(form.senha.data).decode('utf-8'))
-        consulta_usuario = Usuario.consultarnome(user._nome)
+        consulta_usuario = Usuario.consultar_by_nome(form.nome.data)
         if consulta_usuario:
-            Usuario.redefinirsenha(user)
-            flash(f'Senha do Usuário {user._nome} alterada com sucesso !')
+            Usuario.sobrescrever_senha(form.nome.data,generate_password_hash(form.senha.data).decode('utf-8'))
+            flash(f'Senha do Usuário {form.nome.data} alterada com sucesso !')
             return redirect(url_for('login'))
         else:
             flash('Credenciais incorretas !')
