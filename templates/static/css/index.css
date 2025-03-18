@@ -1,0 +1,57 @@
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.conteudo__particao {
+    display: grid;
+    padding: 0 40vh;
+    gap: 3vh;
+}
+.conteudo__video {
+    width: 40rem;
+    height: 25rem;
+    border-radius: 1rem;
+}
+.conteudo__discord {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: rgb(117, 204, 255);
+    gap: 3vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+.conteudo__discord__icone {
+    width: 10vh;
+    border: solid;
+    border-color: rgb(53, 53, 53);
+    padding: 0.5vh;
+    border-radius: 100%;
+    transition: 0.4s;
+}
+.conteudo__discord__icone:hover {
+    background-color: rgb(53, 53, 53);
+}
+.conteudo__discord__texto {
+    font-size: 4vh;
+    color: var(--fonte-cor-primaria-invertida);
+}
+
+@media (max-width: 1200px) {
+    .conteudo {
+        margin: 1vh;
+    }
+
+    .conteudo__particao {
+        padding: 0 5vh;
+        gap: 1vh;
+    }
+
+    .conteudo__video {
+        width: 20rem;
+        height: 12.5rem;
+    }
+}

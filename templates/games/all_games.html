@@ -1,0 +1,32 @@
+{% extends 'shared/template.html' %}
+{% load static %}
+{% block conteudo %}
+
+    <link rel="stylesheet" href="{% static '/css/games.css' %}">
+
+    <section class="conteudo">
+        <div>
+            <h2><strong>OnePlay</strong></h2>
+            <h3>A plataforma dos Gamers</h3>
+        </div>
+        <div>
+            {% if cards %}
+                <div class="conteudo__banners">
+                    {% for card in cards %}
+                        <div class="">
+                            <div class="">
+                                {% if card.imagem %}
+                                    <a href="{% url 'one_game' card.jogo.JogoID %}"><img class="conteudo__banners__imagens" src="{{ card.imagem.url }}" alt="{{ card.jogo.Nome }}" loading="lazy"></a>
+                                {% else %}
+                                    <a href="{% url 'one_game' card.jogo.JogoID %}"><img class="conteudo__banners__imagens" src="{% static '/imgs/games/capa_padrao.jpg' %}" alt="{{ card.jogo.Nome }}" loading="lazy"></a>
+                                {% endif %}
+                            </div>
+                            <h5 class="conteudo__banners__texto"><strong>{{ card.jogo.Nome }}</strong></h5>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

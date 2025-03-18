@@ -1,0 +1,36 @@
+{% extends 'shared/template.html' %}
+{% load static %}
+{% block conteudo %}
+
+    <link rel="stylesheet" href="{% static '/css/info.css' %}">
+
+    <section class="conteudo">
+        <div class="conteudo">
+            <h1>📚 Introdução</h1>
+            <p>O "Oneplay" é um projeto de Trabalho de Conclusão de Curso (TCC) apresentado ao Curso Técnico em Informática para Internet Integrado ao Ensino Médio da Etec Comendador João Rays. Esta versão é uma reconstrução de um projeto originalmente desenvolvido em ASP.NET e MySql, agora construído com Python, Flask, SQL Server e Git.</p>
+            
+            <br>
+
+            <h1>🎮 Sobre o Projeto</h1>
+
+            <p>O site "Oneplay" oferece um feed de novidades onde os jogadores podem acessar notícias, curiosidades, atualizações e guias. Além disso, auxilia novos jogadores a criarem uma party dentro do próprio jogo. O objetivo é criar um ambiente de jogo mais colaborativo e interativo, promovendo a troca de experiências entre os jogadores.
+
+            Em resumo, "Oneplay" é uma plataforma de jogos online que busca melhorar a experiência do jogador por meio da interação e colaboração. Ele é o resultado de um aprendizado contínuo e da aplicação prática de habilidades de desenvolvimento web backend adquiridas.</p>
+
+        </div>
+        <div class="conteudo conteudo__contato">
+            <h2 class="conteudo__contato__texto">Contatos:</h2>
+            <div class="conteudo__particao__caixa">
+                <div class="conteudo__particao">
+                    <h5 class="conteudo__contato__texto">Email</h5>
+                    <a href="mailto:jv10-souza@hotmail.com" target="_blank"><img class="conteudo__contato__icone" src="https://cdn.simpleicons.org/mailgun" alt="icone email"></a>
+                </div>
+                <div class="conteudo__particao">
+                    <h5 class="conteudo__contato__texto">Celular</h5>
+                    <a href="https://wa.me/5514998241199" target="_blank"><img class="conteudo__contato__icone" src="https://cdn.simpleicons.org/whatsapp" alt="icone whatsapp"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

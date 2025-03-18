@@ -1,0 +1,28 @@
+{% extends 'shared/template.html' %}
+{% load static %}
+{% block conteudo %}
+
+    <link rel="stylesheet" href="{% static '/css/index.css' %}">
+
+    <section class="conteudo">
+
+        <div class="conteudo conteudo__particao">
+            <hr>
+            <p class=""><em>Encontre sua comunidade e Jogue comos amigos de forma mais fácil e rápida com </em><strong><em>Oneplay</em></strong></p>
+            <hr>
+        </div>
+        <div class="conteudo conteudo__particao">
+            <div class="">
+                <h2>Aprenda a usar o Discord!</h2>
+                <h4 class="">Use o Discord para entrar na nossa comunidade e encontrar futuros colegas de party</h4>
+            </div>
+            <iframe class="conteudo__video" src="https://www.youtube-nocookie.com/embed/5jJbMVzrToc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="conteudo__discord">
+            <a href="https://discord.com/" target="_blank"><img class="conteudo__discord__icone" src="https://cdn.simpleicons.org/discord" alt="discord"></a>
+            <h2 class="conteudo__discord__texto">Acesse nosso Discord!</h2>
+        </div>
+
+    </section>
+
+{% endblock %}

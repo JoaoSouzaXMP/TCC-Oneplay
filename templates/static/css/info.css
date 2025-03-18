@@ -1,0 +1,50 @@
+.conteudo {
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+.conteudo__contato {
+    width: 100%;
+    background-color: rgb(117, 204, 255);
+    color: var(--fonte-cor-primaria-invertida);
+    padding: 2rem;
+    gap: 5vh;
+}
+.conteudo__particao__caixa {
+    display: flex;
+    gap: 20vh;
+}
+.conteudo__particao {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    background-color: var(--cor-quaternaria);
+    padding: 5vh 15vh;
+}
+.conteudo__contato__texto {
+    font-size: 3vh;
+    color: var(--fonte-cor-primaria-invertida);
+}
+.conteudo__contato__icone {
+    width: 10vh;
+    border: solid;
+    border-color: rgb(53, 53, 53);
+    padding: 0.5vh;
+    border-radius: 20%;
+    transition: 0.4s;
+}   
+.conteudo__contato__icone:hover {
+    background-color: rgb(53, 53, 53);
+}
+
+@media (max-width: 1200px) {
+    .conteudo {
+        margin: 1vh;
+    }
+    .conteudo__particao__caixa {
+        flex-direction: column;
+        gap: 5vh;
+    }
+}

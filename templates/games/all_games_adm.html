@@ -1,0 +1,37 @@
+{% extends 'shared/template.html' %}
+{% load static %}
+{% block conteudo %}
+
+    <!-- Inicio -->
+    <section data-bs-version="5.1" class="gallery3 cid-swrfTAmdjG" id="gallery3-1">
+        <div class="container-fluid">
+            <div class="mbr-section-head">
+                <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>OnePlay</strong></h4>
+                <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">A plataforma dos Gamers</h5>
+            </div>
+            {% if cards %}
+                <div class="row mt-4">
+                    <!-- Jogos -->
+                    {% for card in cards %}
+                        <div class="item features-image сol-12 col-md-6 col-lg-2 active">
+                            <div class="item-wrapper">
+                                <div class="item-img">
+                                    {% if card.imagem %}
+                                        <a href="{% url 'one_game' card.jogo.JogoID %}"><img src="{{ card.imagem.url }}" alt="{{ card.jogo.Nome }}" height="300" loading="lazy"></a>
+                                    {% else %}
+                                        <a href="{% url 'one_game' card.jogo.JogoID %}"><img src="{% static '/imgs/games/capa_padrao.jpg' %}" alt="{{ card.jogo.Nome }}" height="300"></a>
+                                    {% endif %}
+                                </div>
+                                <div class="item-content">
+                                    <h5 class="item-title mbr-fonts-style display-7"><strong>{{ card.jogo.Nome }}</strong></h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- Fim Jogos -->
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

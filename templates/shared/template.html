@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../static/imgs/LOGO/Ativo 3.png" type="image/x-icon">
+        <link rel="stylesheet" href="{% static '/css/template.css' %}">
+        <title>Início</title>
+    </head>
+    <body>
+        <header class="cabecalho">
+            <section class="cabecalho__conteudo">
+                <div class="cabecalho__logo" >
+                    <a href="/"><img class="cabecalho__logo__img" src="../static/imgs/LOGO/Ativo 3.png" alt="Logo OnePlay"></a>
+                    <a class="cabecalho__logo__texto" href="/">OnePlay</a>
+                </div>
+                <div class="cabecalho__menu">
+                    {% if not request.user.is_authenticated %} 
+                        <a href="{% url 'login' %}">Login</a>
+                    {% else %}
+                        <a href="{% url 'logout' %}">Logout</a>
+                    {% endif %}
+                    <a>Usuário: {{ request.user.username }} | Admin: {{ request.user.is_staff }}</a>
+                </div>
+            </section>
+        </header>
+         
+        <section class="barra">
+            <div class="barra__menu">
+                <a href="/">Início</a>
+                <a href="{% url 'info' %}">Informação</a></li>
+                {% if user.is_superuser or user.is_staff %}
+                    <a class="nav-link" href="/admin">Administrativo</a>
+                {% endif %}
+                <a href="{% url 'all_games' %}">JOGOS</a>
+            </div>
+            <div class="barra__conteudo">
+                {% block conteudo %}
+                {% endblock %}
+            </div>
+        </section>
+
+        <footer class="rodape">
+            <section class="rodape__conteudo">
+                <a href="/"><img class="rodape__conteudo_logo" src="{% static '/imgs/LOGO/LOGO.png' %}" alt="Logo"></a>
+                <div class="rodape__conteudo__coluna">
+                    <div class="rodape__conteudo__coluna__conteudo">
+                        <h5><strong>Frase do Dia</strong></h5>
+                        <p class="rodape__conteudo__coluna__conteudo__texto">O ontem é história, o amanhã é um mistério, mas hoje é uma dádiva, por isso chama-se presente.</p>
+                        <p class="rodape__conteudo__coluna__conteudo__texto"><em>-- Mestre Oogway</em></p>
+                    </div>
+                    <div class="rodape__conteudo__coluna__conteudo">
+                        <h5><strong>Comunicação</strong></h5>
+                        <div>
+                            <a href="https://www.twitch.tv/" target="_blank"><img class="rodape__conteudo__coluna__conteudo__icones" src="https://cdn.simpleicons.org/twitch" alt="twitch"></a>
+                            <a href="https://discord.com/" target="_blank"><img class="rodape__conteudo__coluna__conteudo__icones" src="https://cdn.simpleicons.org/discord" alt="discord"></a>
+                            <a href="https://store.steampowered.com/" target="_blank"><img class="rodape__conteudo__coluna__conteudo__icones" src="https://cdn.simpleicons.org/steam" alt="steam"></a>
+                            <a href="https://www.youtube.com/" target="_blank"><img class="rodape__conteudo__coluna__conteudo__icones" src="https://cdn.simpleicons.org/youtube" alt="youtube"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="rodape__conteudo__coluna">
+                    <div class="rodape__conteudo__coluna__conteudo">
+                        <h5><strong>Departamentos</strong></h5>
+                        <p class="rodape__conteudo__coluna__conteudo">
+                            <a href="/">Início</a>
+                            <a href="{% url 'login' %}">Login</a>
+                            <a href="{% url 'info' %}">Informações</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="rodape__conteudo__coluna">
+                    <div class="rodape__conteudo__coluna__conteudo">
+                        <h5><strong>Atendimento</strong></h5>
+                        <p class="rodape__conteudo__coluna__conteudo__texto">
+                            Horário de br atendimento: <br>
+                            08:00AM às 17:30PM - Seg a Sex <br>
+                            08:30AM às 12:30PM - Sáb <br>
+                            Horário de Brasília(Exceto domingo e feriados)
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </footer>
+
+    </body>
+</html>

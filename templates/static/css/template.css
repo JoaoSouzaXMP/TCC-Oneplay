@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --cor-primaria: #000000;
+    --cor-secundaria: #2e2e2e;
+    --cor-terciaria: #464646;
+    --cor-quaternaria: #ffffff;
+    --cor-hover: #3F4E4F;
+
+    --fonte-cor-primaria: #f1f1f1;
+    --fonte-cor-primaria-invertida: #0f0f0f;
+    --fonte-principal: "Krona One", sans-serif;
+    --fonte-secundaria: "Montserrat", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: var(--fonte-cor-primaria);
+    font-family: var(--fonte-secundaria);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--cor-secundaria);
+}
+
+/* cabecalho */
+.cabecalho {
+    gap: 1rem;
+}
+.cabecalho__conteudo {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--fonte-principal);
+    margin: 0 2rem;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+.cabecalho__logo {
+    width:5vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 1vh;
+}
+.cabecalho__logo__img {
+    width: 5vh;
+}
+.cabecalho__logo__texto {
+    font-size: 3vh;
+}
+.cabecalho__menu {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+}
+
+
+.barra {
+    display: grid;
+    grid-template-columns: 10rem auto;
+}
+.barra__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    font-size: 2rem;
+}
+.barra__conteudo {
+    text-align: center;
+}
+
+/* rodape */
+.rodape {
+    gap: 1rem;
+}
+.rodape__conteudo {
+    display: flex;
+    gap: 3rem;
+    margin: 0 3rem;
+    padding: 3rem 0;
+    color: whitesmoke;
+}
+.rodape__conteudo_logo {
+    width: 20rem;
+}
+.rodape__conteudo__coluna {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.rodape__conteudo__coluna__conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.rodape__conteudo__coluna__conteudo__texto {
+    color: rgb(179, 179, 179);
+}
+.rodape__conteudo__coluna__conteudo__icones {
+    width: 2rem;
+    background-color:white;
+    border-radius: 30%;
+    padding: 5px;
+}
+
+@media (max-width: 1200px) {
+    * {
+        font-size: 0.8rem;
+    }
+
+    .barra {
+        display: flex;
+        flex-direction: column;
+    }
+    .barra__menu {
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 1vh;
+    }
+
+    .rodape__conteudo {
+        flex-direction: column-reverse;
+        gap: 2rem;
+    }
+}

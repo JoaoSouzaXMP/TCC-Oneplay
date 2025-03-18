@@ -1,0 +1,68 @@
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    gap: 4vh;
+}
+
+.conteudo__titulo {
+    font-size: 3vh;
+}
+.conteudo__login__inputs {
+    display: flex;
+    flex-direction: column;
+}
+.conteudo__login__input__caixa {
+    display: flex;
+    flex-direction: column;
+}
+.conteudo__login__input__texto {
+    text-align: left;
+}
+.conteudo__login__input {
+    gap: 0;
+}
+.conteudo__login__botao {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    padding: 1vh;
+    background-color: #00bcd4;
+    color: var(--fonte-cor-primaria-invertida);
+    border-color: transparent ;
+    border-radius: 4px;
+}
+
+.caixa__linha {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+.linha {
+    width: 100%;
+}
+.ou {
+    position: absolute;
+    background-color: var(--cor-secundaria);
+    padding-left: 0.5vh;
+    padding-right: 0.5vh;
+}
+
+.caixa__ouath {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2vh;
+    gap: 1vh;
+}
+.caixa__ouath__icones {
+    display: flex;
+    gap: 1vh;
+    justify-content: center;
+    align-items: center;
+}
+.ouath__icone {
+    width: 3vh;
+    margin: 0.5vh;
+}

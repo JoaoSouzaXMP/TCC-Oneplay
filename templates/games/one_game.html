@@ -1,0 +1,165 @@
+{% extends 'shared/template.html' %}
+{% load static %}
+{% block conteudo %}
+
+    <link rel="stylesheet" href="{% static '/css/game-page.css' %}">
+
+    <section class="conteudo">
+        <!-- Inicio Wallpaper -->
+        {% if imagens.ImgPaginaJogo %}
+            <section class="conteudo__wallpaper" style="background-image: url('{{ imagens.ImgPaginaJogo.url }}');">
+        {% else  %}
+            <section class="conteudo__wallpaper">
+        {% endif %}
+                <div class="conteudo__wallpaper__texto">
+                    <h3>{{ jogo.Nome }}</h3>
+                    {% if pagina.ResumoJogo %}
+                        <p>{{ pagina.ResumoJogo }}</p>
+                    {% else %}
+                        <p>Sem Resumo do Jogo</p>
+                    {% endif %}
+                    {% if pagina.LinkDownload %}
+                        <div style="display: flex; flex-direction: row-reverse;">
+                            <a class="conteudo__wallpaper__botao" href="{{ pagina.LinkDownload }}" target="_blank">Download!</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        <!-- Fim Wallpaper -->
+
+        <!-- Inicio Descrição -->
+        <section class="conteudo__descricao">
+            <hr>
+            {% if pagina and pagina.DescricaoJogo %}
+                <p><em>{{ pagina.DescricaoJogo }}</em></p>
+            {% else %}
+                <p><em>Sem Descrição do Jogo</em></p>
+            {% endif %}
+            <hr>
+        </section>
+        <!-- Fim Descrição -->
+
+        <!-- Inicio Tutoriais -->
+        <section class="conteudo__tutorial">
+            <div class="conteudo__tutorial__titulo">
+                <div>
+                    {% if pagina and pagina.TituloTutorial %}
+                        <h4>{{ pagina.TituloTutorial }}</h4>
+                    {% else %}
+                        <h4>Nenhum Titulo do Tutorial Disponíve</h4>
+                    {% endif %}
+                </div>
+                <div>
+                    {% if pagina and pagina.DescricaoTutorial %}
+                        <p>{{ pagina.DescricaoTutorial }}</p>
+                    {% else %}
+                        <p>Nenhuma Descrição do Tutorial Disponível</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="conteudo__tutorial__passos">
+                {% for passos in tutorial %}
+                    <div>
+                        {% if passos.Ordem %}
+                            <p class="conteudo__tutorial__passo__numero">{{ passos.Ordem }}</p>
+                        {% else %}
+                            <p class="conteudo__tutorial__passo__numero">0</p>
+                        {% endif %}
+                        <p>|</p>
+                        <p>\/</p>
+                    </div>
+                    <div class="conteudo__tutorial__texto">
+                        {% if passos.Passo %}
+                            <h4 class="conteudo__tutorial__passo__titulo">{{ passos.Passo }}</h4>
+                        {% else %}
+                            <h4 class="conteudo__tutorial__passo__titulo">Nenhum Titulo do Passo disponível</h4>
+                        {% endif %}
+                        {% if passos.DescricaoPasso %}
+                            <p class="conteudo__tutorial__passo__descricao">{{ passos.DescricaoPasso }}</p>
+                        {% else %}
+                            <p class="conteudo__tutorial__passo__descricao">Nenhum Passo disponível</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+        <!-- Fim Tutoriais -->
+
+        <!-- Inicio Noticia -->
+        <section class="conteudo__notacia__caixa">
+            <!-- Inicio IMG1 -->
+            <section class="conteudo__notacia">
+                <div class="">
+                    {% if imagens.ImgNoticia1 %}
+                        <img class="conteudo__notacia__img" src="data:image;base64,{{ imagens.ImgNoticia1 }}" alt="Imagem Noticia 1 - DB" loading="lazy">
+                    {% else %}
+                        <img class="conteudo__notacia__img" src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 1 - P" loading="lazy">
+                    {% endif %}
+                    <p>Noticia 1</p>
+                </div>
+                <div class="conteudo__notacia__texto">
+                        {% if pagina.TituloNoticia1 %}
+                            <h3 class="conteudo__notacia__titulo">{{ pagina.TituloNoticia1 }}</h3>
+                        {% else %}
+                            <h3 class="conteudo__notacia__titulo">Nenhum Titulo da Noticia 1 disponível</h3>
+                        {% endif %}
+                        {% if pagina.DescricaoNoticia1 %}
+                            <p>{{ pagina.DescricaoNoticia1 }}</p>
+                        {% else %}
+                            <p>Nenhuma Descrição da Noticia 1 disponível</p>
+                        {% endif %}
+                </div>
+            </section>
+            <!-- Fim IMG1 -->
+
+            <!-- Inicio IMG2 -->
+            <section class="conteudo__notacia conteudo__notacia__reverso">
+                <div class="col-12 col-lg-6">
+                    {% if imagens.ImgNoticia2 %}
+                        <img class="conteudo__notacia__img" src="data:image;base64,{{ imagens.ImgNoticia2 }}" alt="Imagem Noticia 2 - DB" loading="lazy">
+                    {% else %}
+                        <img class="conteudo__notacia__img" src="/static/imgs/GAMES/capa_padrao.jpg" alt="Imagem Noticia 2 - P" loading="lazy">
+                    {% endif %}
+                    <p>Noticia 2</p>
+                </div>
+                <div class="conteudo__notacia__texto">
+                    {% if pagina.TituloNoticia2 %}
+                        <h3 class="conteudo__notacia__titulo">{{ pagina.TituloNoticia2 }}</h3>
+                    {% else %}
+                        <h3 class="conteudo__notacia__titulo">Nenhum Titulo da Noticia 2 disponível</h3>
+                    {% endif %}
+                    {% if pagina.DescricaoNoticia2 %}
+                        <p>{{ pagina.DescricaoNoticia2 }}</p>
+                    {% else %}
+                        <p>Nenhuma Descrição da Noticia 2 disponível</p>
+                    {% endif %}
+                </div>
+            </section>
+            <!-- Fim IMG2 -->
+        </section>
+        <!-- Fim Noticia -->
+
+        <!-- Inicio Vídeo Destaque -->
+        <section class="conteudo__video__caixa">
+            <div class="conteudo__video__texto">
+                <h3 class="conteudo__video__texto__titulo1">Veja sobre a ultima atualização:</h3>
+                {% if pagina.TituloVideo %}
+                    <h4 class="conteudo__video__texto__titulo2">{{ pagina.TituloVideo }}</h4>
+                {% else %}
+                    <h4 class="conteudo__video__texto__titulo2">Nenhum Titulo do Vídeo disponível</h4>
+                {% endif %}
+                {% if pagina.DescricaoVideo %}
+                    <p>{{ pagina.DescricaoVideo }}</p>
+                {% else %}
+                    <p>Nenhuma Descrição do Vídeo disponível</p>
+                {% endif %}
+            </div>
+            {% if pagina.LinkVideo %}
+                <iframe class="conteudo__video" src="{{ pagina.LinkVideo }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            {% endif %}
+        </section>
+        <!-- Fim Vídeo Destaque -->
+
+    </section>
+
+{% endblock %}

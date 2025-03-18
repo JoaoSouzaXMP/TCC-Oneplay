@@ -1,0 +1,34 @@
+.conteudo {
+    margin: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.conteudo__banners {
+    display: flex;
+    gap: 0.5rem;
+}
+.conteudo__banners__imagens {
+    width: 20vh;
+}
+.conteudo__banners__texto {
+    text-align: left;
+    font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+    .conteudo {
+        margin: 0;
+        gap: 1vh;
+    }
+    .conteudo__banners {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: space-evenly;
+        justify-items: start;
+    }
+    .conteudo__banners__imagens {
+        width: 15vh;
+    }
+}

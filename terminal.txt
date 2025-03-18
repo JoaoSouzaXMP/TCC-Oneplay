@@ -1,0 +1,37 @@
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+python -m pip install django
+python -m pip install mssql-django
+python -m pip install python-dotenv
+python -m pip install cloudinary
+python -m pip install django-allauth
+python -m pip install "django-allauth[socialaccount]"
+
+# Requirements
+python -m pip freeze > requirements.txt
+python -m pip install -r requirements.txt
+
+git init
+
+#Inicia um projeto novo
+django-admin startproject setup .
+py manage.py startapp oneplay
+py manage.py startapp games
+py manage.py startapp users
+
+python manage.py help
+
+#Rodar app
+python manage.py runserver
+python manage.py runserver 0.0.0.0:9880
+
+python manage.py collectstatic
+
+# Roda toda vez que modificar a model
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py shellj
+
+python manage.py createsuperuser
